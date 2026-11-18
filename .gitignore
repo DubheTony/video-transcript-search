@@ -1,0 +1,25 @@
+# 只发布已逐一审核的源码和说明；默认排除模型、素材、转写结果、日志与虚拟环境。
+/*
+!/.gitignore
+!/README.md
+!/pyproject.toml
+!/LICENSE
+!/src/
+/src/*
+!/src/vkn/
+/src/vkn/*
+!/src/vkn/__init__.py
+!/src/vkn/__main__.py
+!/src/vkn/asr.py
+!/src/vkn/audio.py
+!/src/vkn/clean.py
+!/src/vkn/cli.py
+!/src/vkn/compose.py
+!/src/vkn/config.py
+!/src/vkn/diarize.py
+!/src/vkn/download.py
+!/src/vkn/export.py
+!/src/vkn/fetch.py
+!/src/vkn/index.py
+!/src/vkn/segment.py
+!/src/vkn/subs.py
