@@ -1,0 +1,34 @@
+[project]
+name = "vkn"
+version = "0.1.0"
+description = "视频知识提取：把视频转成带时间戳、可检索的文字"
+requires-python = ">=3.11"
+dependencies = [
+    "faster-whisper==1.1.1",
+    # 固定 4.6.0：4.8.x 的 Windows wheel 缺 cuBLAS 依赖；该版本与 WhisprRT 一致
+    "ctranslate2==4.6.0",
+    # faster-whisper 1.1.1 用到 av 的 metadata_errors 参数，av 16+ 已移除
+    "av>=15,<16",
+    # faster-whisper 的元数据漏了 requests，手动补上
+    "requests",
+    # ctranslate2 4.6.0 仍 import pkg_resources，setuptools 81+ 已移除
+    "setuptools==80.7.1",
+    # GPU 运行库：ctranslate2 自带的 cudnn64_9.dll 只是入口，子 DLL 在这里
+    "nvidia-cudnn-cu12==9.9.0.52",
+    "nvidia-cublas-cu12==12.9.2.10",
+    # 中文引擎 SenseVoice（CPU）
+    "sherpa-onnx==2.0.1",
+    # 中文分词与拼音索引（同音字检索）
+    "jieba==0.42.1",
+    "pypinyin==0.55.0",
+]
+
+[project.scripts]
+vkn = "vkn.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vkn"]
